@@ -1,27 +1,67 @@
-/* Añade esto al final de tu CSS de la M2 */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --bg: #0f111a;
+  --surface: #1a1d29;
+  --text: #e2e8f0;
+  --gold: #d4af37;
+  --gryffindor: #ae0001;
+  --slytherin: #2a623d;
+  --hufflepuff: #ecb939;
+  --ravenclaw: #222f5b;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 2rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 3rem;
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 1rem;
+}
+
+h1 {
+  color: var(--gold);
+  font-size: 2.5rem;
+  margin: 0 0 1rem 0;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+/* Controles y filtros */
 .filters {
   display: flex;
   gap: 1rem;
   justify-content: center;
   margin: 2rem 0;
+  flex-wrap: wrap;
 }
 
-.filters input {
+.filters input, .filters select {
   padding: 0.5rem 1rem;
   border-radius: 8px;
   border: 2px solid var(--gold);
   background: var(--surface);
   color: white;
   font-size: 1rem;
-  min-width: 250px;
+  outline: none;
 }
 
+.filters input { min-width: 250px; }
+
+/* Estadísticas */
 .stats {
   text-align: center;
   margin-bottom: 2rem;
   display: flex;
   gap: 1rem;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
 }
 
@@ -30,12 +70,65 @@
   border-radius: 20px;
   font-weight: bold;
   font-size: 0.9rem;
+  color: white;
 }
 
-.btn-fav {
-  margin-top: 1rem;
+/* Grid de tarjetas */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  background: var(--surface);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover { transform: translateY(-5px); }
+
+.card img {
   width: 100%;
-  padding: 0.5rem;
+  height: 300px;
+  object-fit: cover;
+  object-position: top; /* Para que salga la cara y no el torso */
+  background-color: #2a2a2a;
+}
+
+.card-content { padding: 1rem; flex-grow: 1; display: flex; flex-direction: column; }
+.card h2 { margin: 0 0 0.5rem 0; font-size: 1.2rem; color: var(--gold); }
+
+.house {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+  align-self: flex-start;
+}
+
+/* Colores de las casas */
+.house.gryffindor, .stat-badge.gryffindor { background: var(--gryffindor); }
+.house.slytherin, .stat-badge.slytherin { background: var(--slytherin); }
+.house.hufflepuff, .stat-badge.hufflepuff { background: var(--hufflepuff); color: #000; }
+.house.ravenclaw, .stat-badge.ravenclaw { background: var(--ravenclaw); }
+.house.sin-casa, .stat-badge.sin-casa { background: #555; }
+
+.actor { font-size: 0.85rem; color: #94a3b8; margin: 0.2rem 0; }
+
+/* Botón de favorito */
+.btn-fav {
+  margin-top: auto; /* Empuja el botón al fondo de la tarjeta */
+  width: 100%;
+  padding: 0.6rem;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -45,6 +138,30 @@
   transition: background 0.2s;
 }
 
-.btn-fav.active {
-  background: #e74c3c;
+.btn-fav:hover { background: #444; }
+.btn-fav.active { background: #e74c3c; color: white; }
+
+/* Estados de carga y error */
+.spinner-container {
+  text-align: center;
+  padding: 3rem;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(212, 175, 55, 0.3);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem auto;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.error, .empty {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.2rem;
+  color: #ef4444;
 }
