@@ -1,16 +1,23 @@
-# React + Vite
+# Misión 3 - Reactor Core (Harry Potter App)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Reconstrucción de la app de Harry Potter usando React 19 y Vite.
 
-Currently, two official plugins are available:
+## Cómo ejecutar
+1. `npm install`
+2. `npm run dev`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Características
+- Componentización (Card, List, Filters, Stats).
+- Custom hooks: `useFetch` y `useLocalStorage` (Bonus).
+- Búsqueda en tiempo real y filtrado por casas.
+- Sistema de favoritos persistente.
 
-## React Compiler
+## Uso de IA
+- **Herramienta**: ChatGPT.
+- **Qué delegué**: La estructura inicial de los componentes y la lógica del hook `useLocalStorage`.
+- **Cómo lo verifiqué**: Añadí un favorito, recargué la página y comprobé que seguía marcado.
+- **Qué escribí yo**: La lógica de filtrado con `useMemo`, la estructura de los componentes y el manejo de las keys en las listas.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Autopsia
+1. **Decisión 1**: Uso `useMemo` para derivar los personajes filtrados en lugar de guardarlos en un `useState` aparte. Descarté el estado duplicado porque tendría que sincronizarlo manualmente cada vez que los filtros cambiasen, lo que llevaría a bugs.
+2. **Decisión 2**: Uso un custom hook `useFetch` en lugar de poner el `fetch` directamente en el `useEffect` de `App`. Descarté ponerlo en `App` porque así puedo reutilizar la lógica y el código queda más limpio.
