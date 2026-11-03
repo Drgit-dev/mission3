@@ -1,0 +1,50 @@
+/* Añade esto al final de tu CSS de la M2 */
+.filters {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.filters input {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 2px solid var(--gold);
+  background: var(--surface);
+  color: white;
+  font-size: 1rem;
+  min-width: 250px;
+}
+
+.stats {
+  text-align: center;
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.stat-badge {
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.btn-fav {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #333;
+  color: white;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.btn-fav.active {
+  background: #e74c3c;
+}
